@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     //cv::resizeWindow(OPENCV_WINDOW, 640, 480);
     // open camera
     // 0 is the index of the Webcam
-         cv::VideoCapture cap(0,cv::CAP_V4L2);    // 4 gives a blue screen
+         cv::VideoCapture cap(0,cv::CAP_V4L2);    // 4 gives a blue screen ,cv::CAP_V4L2
     //   cv::VideoCapture cap("/home/p00972zl/catkin_ws/src/lib_open_thermal_camera/src/test.avi"); 
     //cv::VideoCapture cap;
     //int deviceID = 0;             // 0 = open default camera
@@ -38,19 +38,21 @@ int main(int argc, char* argv[])
     // open selected camera using selected API
     //cap.open(deviceID, apiID);
     
-    
+    ROS_INFO_STREAM("point 1");
     // set size of dimention of camera image
     // output is 
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
     
+    ROS_INFO_STREAM("point 2");
     // check if camera is open or not
-    if ((!cap.isOpened()) || (!cap.grab()) || (!cap.retrieve(image)) || image.empty())
+    if ((!cap.isOpened()) || (!cap.grab())) //|| (!cap.retrieve(image)) || image.empty()
     {
-        std::cout << "cannot open camera"; // error message if camera is not open
+        ROS_INFO_STREAM("cannot open camera"); // error message if camera is not open
         exit(EXIT_SUCCESS);
         
     }
+    ROS_INFO_STREAM("point 3");
 
     // keep showing images to screen
     while (ros::ok()) {

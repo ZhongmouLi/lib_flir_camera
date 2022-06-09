@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16)
 project(lib_open_thermal_camera)
 
 # find needed ros packages
@@ -13,12 +13,12 @@ find_package(catkin REQUIRED COMPONENTS
 # find OPENCV
 #find_package(OpenCV 4.2 REQUIRED) 
 # specify OpenCV 4.5.4 to link
-set(OpenCV_DIR /usr/local/lib/cmake/opencv4)
-find_package(OpenCV 4.5.4 REQUIRED)
-#if (OpenCV_FOUND)
-    message(STATUS "OpenCV is found")
+#set(OpenCV_DIR /usr/local/lib/cmake/opencv4)
+find_package(OpenCV 4.2.0 EXACT REQUIRED) #
+if (OpenCV_FOUND)
+    message(WARNING "OpenCV ${OpenCV_VERSION} is found")
     message(STATUS "${OpenCV_LIBRARIES}")
-#endif (OpenCV_FOUND)
+endif (OpenCV_FOUND)
 
 
 
